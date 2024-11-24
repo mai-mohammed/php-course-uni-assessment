@@ -13,24 +13,33 @@ The project is organized into the following directory structure:
 
 ```
 OnlineStore/
-├── public/                 # Publicly accessible folder (Document Root for Apache)
-│   ├── css/                # CSS files for styling
-│   ├── js/                 # JavaScript files for front-end interactivity
-│   ├── images/             # Images used in the front-end
-│   ├── index.php           # Main entry point (homepage)
-│   ├── login.php           # Login page
-│   └── product.php         # Product details page
-├── app/                    # Core application files (MVC pattern)
-│   ├── controllers/        # PHP controllers for handling requests
-│   ├── models/             # PHP models for database interactions
-│   └── views/              # PHP view templates for generating HTML
-├── config/                 # Configuration files
-│   └── config.php          # Database connection and app settings
-├── database/               # SQL scripts for creating tables
-│   └── schema.sql          # Database schema script
-├── docs/                   # Documentation files
-│   └── README.md           # Project README file
-└── vendor/                 # Third-party libraries (if using Composer for PHP dependencies)
+├── public/                         # Publicly accessible files (Document Root for Apache)
+│   ├── css/                        # CSS stylesheets
+│   ├── js/                         # JavaScript files
+│   ├── images/                     # Static images
+│   └── index.php                   # Main entry point for the application
+├── app/                            # Application core (MVC pattern)
+│   ├── Controllers/                # Controllers handling HTTP requests
+│   ├── Models/                     # Models for database interactions
+│   └── Views/                      # Views/templates for generating HTML
+│       ├── templates/              # Shared templates (e.g., header, footer)
+├── config/                         # Configuration files
+│   ├── config.php                  # General app configuration
+│   └── database.php                # Database connection settings
+├── core/                           # Core framework components
+│   ├── Router.php                  # Router for handling routes
+│   ├── Database.php                # Database connection singleton
+│   ├── Auth.php                    # Authentication handling (e.g., sessions)
+│   └── Controller.php              # Base controller class for shared functionality
+├── database/                       # SQL scripts for database management
+│   ├── schema.sql                  # SQL script for database schema
+│   └── seed.sql                    # Sample data for testing the application
+├── docs/                           # Project documentation
+│   └── README.md                   # Main README file
+├── vendor/                         # Third-party libraries (managed by Composer)
+├── composer.json                   # Composer configuration file
+├── .gitignore                      # Git ignore rules
+└── .env                            # Environment variables (e.g., database credentials)
 ```
 
 ### Explanation of Each Folder
