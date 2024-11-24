@@ -250,7 +250,7 @@ header li {
 /* ---------Landing --------- */
 .landing {
   height: 209px;
-  background-image: url(../images/back-img.jpg);
+  background-image: url(/images/back-img.jpg);
   background-position: 50% 50%;
   background-size: cover;
   display: flex;

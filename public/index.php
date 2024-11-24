@@ -14,8 +14,12 @@ $router->add('/register', 'AuthController@showRegisterForm'); // GET
 $router->add('/register/submit', 'AuthController@processRegistration'); // POST
 $router->add('/login', 'AuthController@showLoginForm'); // GET
 $router->add('/login/submit', 'AuthController@processLogin'); // POST
-
 $router->add('/logout', 'AuthController@logout');
+
+
+$router->add('/products', 'ProductController@index');
+$router->add('/products/{id}', 'ProductController@show');
+
 
 
 // Dispatch the requested URL
