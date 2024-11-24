@@ -1,0 +1,105 @@
+body {
+    position: relative;
+}
+
+
+.overlay {
+    position: fixed;
+    background-color: #0000007a;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    filter: blur(4px);
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.product-details-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 5;
+    background-color: white;
+    height: 600px;
+    width: 60%;
+    padding: 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center
+}
+
+.product-details-popup.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.fa-xmark {
+    font-size: 35px;
+    position: absolute;
+    top: 1.2rem;
+    right: 2rem;
+    transition: font-size 0.5s;
+    cursor: pointer;
+}
+
+.fa-xmark:hover {
+    color: red;
+    font-size: 40px;
+}
+
+.product-image {
+    background-image: url('https://cdni.llbean.net/is/image/wim/100220_0_44?hei=1370&wid=1190');
+    width: 40%;
+    height: 500px;
+    border-radius: 5px;
+    border: 1px solid #8080806a;
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40%;
+    height: 500px;
+}
+
+.product-name {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.product-description {
+    font-size: 20px;
+}
+
+.product-price {
+    margin-top: 1rem;
+    font-weight: 700;
+}
+
+.product-category{
+    font-weight: 700;
+}
+
+.product-details-popup button {
+    width: 80%;
+    margin: 0 auto;
+    padding:1rem 0 ;
+    border-radius: 5px;
+    border: none;
+    border: 1px solid #8080806a;
+    font-size: 18px;
+    color: white;
+    background-color: #0047aa;
+    font-weight: 700;
+    font-family: var(--main-font);
+}

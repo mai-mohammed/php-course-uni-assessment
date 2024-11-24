@@ -1,0 +1,11 @@
+{
+    "name": "mai-mohammed/php-uni-project",
+    "description": "A simple PHP MVC app.",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Core\\": "core/"
+        }
+    }
+}
