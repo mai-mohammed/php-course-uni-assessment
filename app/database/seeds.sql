@@ -1,6 +1,5 @@
 -- Disable foreign key checks to avoid constraint issues during truncation
 SET FOREIGN_KEY_CHECKS = 0;
-
 -- Truncate each table to remove all rows and reset auto-increment counters
 TRUNCATE TABLE Order_Items;
 TRUNCATE TABLE Orders;
@@ -11,12 +10,8 @@ TRUNCATE TABLE Roles;
 TRUNCATE TABLE Users;
 TRUNCATE TABLE Products;
 TRUNCATE TABLE Categories;
-
 -- Re-enable foreign key checks
 SET FOREIGN_KEY_CHECKS = 1;
-
-
-
 -- Insert Roles
 INSERT INTO Roles (role_name)
 VALUES ('Customer'),
@@ -47,12 +42,12 @@ INSERT INTO Users (username, email, password_hash)
 VALUES (
         'customer_user',
         'customer@example.com',
-        'hashed_password_customer'
+        '$2y$10$Q.Npph5GPHM2dsiSIvN.nelhT.wXJCd2J6hQHB4cMX4qFZ1gmHjFq' -- 'password'
     ),
     (
         'admin_user',
         'admin@example.com',
-        'hashed_password_admin'
+        '$2y$10$Q.Npph5GPHM2dsiSIvN.nelhT.wXJCd2J6hQHB4cMX4qFZ1gmHjFq' -- 'password'
     );
 -- Link Users to Roles in User_Roles
 -- Assuming User IDs: customer_user = 1, admin_user = 2
@@ -191,3 +186,70 @@ VALUES -- Shirts category (assuming Shirts has id = 1)
         3,
         100
     );
+-- Insert Orders
+-- Assuming User IDs: 1 (customer_user), 2 (admin_user)
+INSERT INTO Orders (user_id, order_date, status, total_amount)
+VALUES (1, '2024-11-20 10:00:00', 'Completed', 120.00),
+    (1, '2024-11-21 14:30:00', 'Pending', 90.00),
+    (2, '2024-11-22 09:15:00', 'Completed', 240.00),
+    (1, '2024-11-23 18:45:00', 'Completed', 150.00),
+    (2, '2024-11-24 13:00:00', 'Cancelled', 50.00);
+-- Insert Order_Items
+-- Order 1: Customer bought Shirts and Jeans
+INSERT INTO Order_Items (
+        order_id,
+        product_id,
+        quantity,
+        price_at_purchase
+    )
+VALUES (1, 1, 2, 8.00),
+    -- 2x Shirt (Product ID 1)
+    (1, 10, 1, 90.00);
+-- 1x Jeans (Product ID 10)
+-- Order 2: Customer bought Shoes
+INSERT INTO Order_Items (
+        order_id,
+        product_id,
+        quantity,
+        price_at_purchase
+    )
+VALUES (2, 13, 3, 30.00);
+-- 3x Shoes (Product ID 13)
+-- Order 3: Admin bought various products
+INSERT INTO Order_Items (
+        order_id,
+        product_id,
+        quantity,
+        price_at_purchase
+    )
+VALUES (3, 2, 2, 30.00),
+    -- 2x Shirt (Product ID 2)
+    (3, 3, 1, 30.00),
+    -- 1x Shirt (Product ID 3)
+    (3, 10, 3, 90.00);
+-- 3x Jeans (Product ID 10)
+-- Order 4: Customer bought Shoes and a Shirt
+INSERT INTO Order_Items (
+        order_id,
+        product_id,
+        quantity,
+        price_at_purchase
+    )
+VALUES (4, 13, 1, 30.00),
+    -- 1x Shoes (Product ID 13)
+    (4, 2, 4, 30.00);
+-- 4x Shirt (Product ID 2)
+-- Order 5: Cancelled order
+INSERT INTO Order_Items (
+        order_id,
+        product_id,
+        quantity,
+        price_at_purchase
+    )
+VALUES (5, 10, 1, 90.00);
+-- 1x Jeans (Product ID 10)
+-- Verify data by selecting from Orders and Order_Items
+SELECT *
+FROM Orders;
+SELECT *
+FROM Order_Items;

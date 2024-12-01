@@ -4,6 +4,7 @@ use Core\Auth;
 
 // Check user login state
 $user = Auth::user();
+$isAdmin = Auth::isAdmin(); // Check if the user is an admin
 ?>
 
 <!DOCTYPE html>
@@ -37,25 +38,28 @@ $user = Auth::user();
         <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
         <nav class="drop-down-menu">
             <ul id="menu-list">
-                <li>Shop</li>
+                <li><a href="/products">Shop</a></li>
                 <li>Mens</li>
                 <li>Women</li>
-                <li>About</li>
+                <li><a href="/about">About</a></li>
             </ul>
         </nav>
 
         <a href="/" class="logo left-logo"><i class="fa-solid fa-spa"></i><span>SHOP'X</span></a>
         <nav class="center-nav-pages">
             <ul>
-                <li>Shop</li>
+                <li><a href="/products">Shop</a></li>
                 <li>Mens</li>
                 <li>Women</li>
-                <li>About</li>
+                <li><a href="/about">About</a></li>
             </ul>
         </nav>
         <a href="/" class="logo center-logo"><i class="fa-solid fa-spa"></i><span>SHOP'X</span></a>
         <div class="user-part">
             <?php if ($user): ?>
+                <?php if ($isAdmin): ?>
+                    <a href="/admin-panel" class="admin-button">Admin Panel</a>
+                <?php endif; ?>
                 <div class="user-dropdown">
                     <i class="fa-solid fa-circle-user user-icon" onclick="toggleDropdown(this)"></i>
                     <div class="dropdown-menu">

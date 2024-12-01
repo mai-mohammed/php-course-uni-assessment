@@ -16,10 +16,16 @@ $router->add('/login', 'AuthController@showLoginForm'); // GET
 $router->add('/login/submit', 'AuthController@processLogin'); // POST
 $router->add('/logout', 'AuthController@logout');
 
-
+// customer routes
 $router->add('/products', 'ProductController@index');
 $router->add('/products/{id}', 'ProductController@show');
 
+// admin panel routes
+$router->add('/admin-panel', 'AdminController@index');
+$router->add('/admin-panel/products', 'AdminController@listProducts');
+$router->add('/admin-panel/products/{id}', 'AdminController@productDetails');
+
+$router->add('/about', 'StaticController@about');
 
 
 // Dispatch the requested URL

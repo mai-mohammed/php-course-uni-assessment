@@ -1,0 +1,152 @@
+/* General Breadcrumb Styles */
+.breadcrumb {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--main-color);
+    /* Use the main color */
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb span {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Underlined Section Headers */
+.section-header {
+    position: relative;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.section-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 50%;
+    height: 4px;
+    background-color: #e65c54;
+}
+
+/* Maintain Existing Styles */
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th,
+table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: var(--main-color);
+    color: var(--text-color);
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Images */
+img {
+    max-height: 50px;
+    border-radius: 5px;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    background-color: var(--main-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #333;
+    /* Darker hover effect */
+}
+
+/* Product Details Page */
+.product-details-container {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 95%;
+    height: 50%;
+    flex-direction: row;
+}
+
+.product-details img {
+    max-width: 300px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-info p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+
+/* Spacing Between Items in List */
+.statistics-summary ul,
+.top-products ul {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.statistics-summary ul li,
+.top-products ul li {
+    margin-bottom: 8px;
+    font-size: 1rem;
+}

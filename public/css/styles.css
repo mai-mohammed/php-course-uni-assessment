@@ -442,9 +442,6 @@ body {
   align-items: center;
   justify-content: center;
   height: 70vh;
-  /* Takes 80% of the viewport height for centering effect */
-  background-image: url('images/hero-bg.jpg');
-  /* Use a suitable background image */
   background-size: cover;
   background-position: center;
   color: #333;
