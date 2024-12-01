@@ -38,8 +38,7 @@ OnlineStore/
 │   └── README.md                   # Main README file
 ├── vendor/                         # Third-party libraries (managed by Composer)
 ├── composer.json                   # Composer configuration file
-├── .gitignore                      # Git ignore rules
-└── .env                            # Environment variables (e.g., database credentials)
+└── .gitignore                      # Git ignore rules
 ```
 
 ### Explanation of Each Folder
@@ -161,43 +160,93 @@ The database schema is designed to manage users, roles, products, categories, pe
 - **Roles** can have multiple **Permissions** through the `Role_Permissions` table, enabling flexible access control.
 - **Orders** are associated with **Users**, and each **Order_Items** entry links a **Product** to an **Order**, allowing detailed tracking of each item within an order.
 
+Here’s the updated setup instructions with the addition of binding in `hosts`:
+
+---
 
 ## Setup and Installation
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/OnlineStore.git
+   git clone https://github.com/mai-mohammed/php-course-uni-assessment.git
    cd OnlineStore
    ```
 
 2. **Database Setup**:
    - Create a new MySQL database.
-   - Run the `schema.sql` script located in the `database/` folder to create the tables.
-   - Update the database configuration in `config/config.php`.
+     ```sql
+     CREATE DATABASE OnlineStore;
+     ```
+   - Import the `schema.sql` script located in the `database/` folder to create the tables:
+     ```bash
+     mysql -u [username] -p OnlineStore < database/schema.sql
+     ```
+   - Seed the database by running the seeds script located in the `database/` folder:
+     ```bash
+     mysql -u [username] -p OnlineStore < database/seeds.sql
+     ```
+   - Update the database configuration in `config/config.php`:
+     ```php
+     return [
+         'host' => '127.0.0.1',
+         'port' => '3306',
+         'database' => 'OnlineStore',
+         'username' => 'your_db_username',
+         'password' => 'your_db_password'
+     ];
+     ```
 
-3. **Install Dependencies** (if using Composer):
-   ```bash
-   composer install
-   ```
+3. **Install Dependencies**:
+   - Install PHP dependencies using Composer:
+     ```bash
+     composer install
+     ```
 
-4. **Start Apache Server**:
-   - Place the project in your Apache server's root directory.
-   - Ensure the document root points to the `public/` folder.
-   - Access the application via `http://localhost/OnlineStore`.
+4. **Set File Permissions**:
+   - Ensure proper file permissions for the Apache web server:
+     ```bash
+     sudo chown -R www-data:www-data /path/to/OnlineStore
+     sudo chmod -R 755 /path/to/OnlineStore
+     ```
 
-5. **Accessing the Application**:
-   - Visit `http://localhost/OnlineStore/public/index.php` to view the homepage.
+5. **Apache Server Configuration**:
+   - Place the project in your Apache server's root directory (e.g., `/var/www/html/OnlineStore`).
+   - Update the Apache configuration to point the document root to the `public/` folder:
+     ```
+     <VirtualHost *:80>
+         ServerName online-store.local
+         DocumentRoot /path/to/OnlineStore/public
 
-## Usage
+         <Directory /path/to/OnlineStore/public>
+             AllowOverride All
+             Require all granted
+         </Directory>
+     </VirtualHost>
+     ```
+   - Enable the site and restart Apache:
+     ```bash
+     sudo a2ensite online-store.conf
+     sudo systemctl restart apache2
+     ```
 
-- **Homepage**: Lists products and allows users to browse categories.
-- **Login**: Allows registered users to log in. After login, users can place orders.
-- **Product Details**: Provides detailed information about each product.
-- **Admin Access**: (If implemented) Allows admins to manage products, categories, and orders.
+6. **Bind Hostname**:
+   - Update your system's `hosts` file to bind `online-store.local` to `127.0.0.1`:
+     ```bash
+     sudo nano /etc/hosts
+     ```
+   - Add the following line:
+     ```
+     127.0.0.1 online-store.local
+     ```
+   - Save and close the file.
 
+7. **Accessing the Application**:
+   - Visit `http://online-store.local` in your browser to view the homepage.
 
+8. **Admin Access**:
+   - Use the following default credentials to log in as an admin:
+     - Email: `admin@example.com`
+     - Password: `password`
+   - Once logged in, access the admin panel at `http://online-store.local/admin-panel`.
 
-Here's the updated `README.md` section for the database schema, with the additional tables for **Permissions** and **Role_Permissions**:
-
----
 
